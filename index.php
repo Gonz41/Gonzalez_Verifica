@@ -5,11 +5,13 @@ use Slim\Factory\AppFactory;
 
 require __DIR__ . '/vendor/autoload.php';
 
+include_once("./controllers/ImpiantoApiController.php");
+include_once("./controllers/IndexController.php");
+
 $app = AppFactory::create();
 
-$app->get('/', function (Request $request, Response $response, $args) {
-    $response->getBody()->write("Hello world!");
-    return $response;
-});
+$app->get('/', "IndexController:index");
+
+$app->get('/impianto',"ImpiantoApiController:getJsonImpianto");
 
 $app->run();
